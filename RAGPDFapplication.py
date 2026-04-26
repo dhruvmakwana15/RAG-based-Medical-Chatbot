@@ -65,13 +65,23 @@ if uploaded_files:
 
         # Prompt — instructs LLM to use context if relevant, else answer from own knowledge
         prompt = PromptTemplate(
-            template="""Use the pieces of information provided in the context to answer user's question.
-If you dont know the answer, just say that you dont know, dont try to make up an answer.
-Dont provide anything out of the given context
-        Context:{context}
-        Question: {question}
+            template="""You are a medical assistant AI. Answer the user's question ONLY using the provided context.
+Guidelines:
+- Provide clear, simple, and accurate explanations
+- If the answer is not in the context, say: "I don't know based on the provided document"
+- Do NOT make up information
+- Do NOT provide medical diagnosis or prescriptions
+- If the question is serious, suggest consulting a qualified doctor
+- Keep answers concise and easy to understand
 
-        Answer:""",
+Context:
+{context}
+
+Question:
+{question}
+
+Answer:
+""",
             input_variables=["context", "question"]
         )  
 
