@@ -56,7 +56,7 @@ if uploaded_files:
 
     vector_store.add_documents(chunks)
 
-    st.success(f"Total pages loaded: {len(docs)}")
+    st.success(f"Total pages loaded: {len(all_docs)}")
     # Query
     query = st.text_input("Ask a question")
     if query:
